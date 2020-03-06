@@ -8,15 +8,15 @@ Sowohl auf dem BeagleBone aus auch auf dem PC für die Softwareentwicklung befin
    
 ![Kommunikationsstruktur](/BB_ROS_Comm) 
  
-Das Roboterfahrzeug als mechatronisches System besitzt die Komponenten Sensordatenerfassung, Motorsteuerung und Kalman-Filter / Regelung. Jeder dieser Komponenten ist ein ROS-Knoten also ein Prozess zugeordnet.
+**Das Roboterfahrzeug als mechatronisches System besitzt die Komponenten Sensordatenerfassung, Motorsteuerung und Kalman-Filter / Regelung. Jeder dieser Komponenten ist ein ROS-Knoten also ein Prozess zugeordnet.
 Dabei werden die Knoten Sensordatenerfassung und Motorsteuerung auf dem BB ausgeführt. Der Knoten Kalman-Filter / Regelung wird mit Simulink auf dem PC erstellt und dort auch ausgeführt.
 Wie in der Grafik dargestellt liefert der Sensorknoten Abstandsmesswerte (Topic A) an den
-Filter-/Regelungsknoten. Dieser wiederum liefert Solldrehzahlen der Räder (Topic B) an die Motorsteuerung.
+Filter-/Regelungsknoten. Dieser wiederum liefert Solldrehzahlen der Räder (Topic B) an die Motorsteuerung.**
 
 ![Softwarestruktur ROS](/BB_ROS_Struc)
 
 In diesem Repository finden Sie die Projektanleitung als PDF-Datei. Darin werden die BeagleBone-Hardware sowie die Schnittstellen zu den Peripheriemodulen (Sensoren und Aktoren) eingehend behandelt. Auch finden sich dort Anleitungen zur Softwareerstellung mit C, Python und MATLAB/Simulink sowie Basisinformationen zum Umgang mit Embedded Linux.
-Weiter sind hier als Beispiele Quellcodedateien für C-, Python-, und SIMULINK-Programme sowie für ein ROS-Package zu finden.
+Weiter sind hier als Beispiele Quellcodedateien für C-, Python-, und Simulink-Programme sowie für ein ROS-Package zu finden.
   
 Das verwendete Image für den BeagleBone finden sie hier als Download.
 
