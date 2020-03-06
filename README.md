@@ -1,6 +1,6 @@
 # Projekt Sensor-/Regelungssysteme mit BeagleBone, Ubuntu, ROS und Simulink - Master Mechatronik, Hochschule Reutlingen
 
-Embedded Linux auf einem BeagleBone unter ROS mit Anwendung durch ein Roboterfahrzeug.
+*Embedded Linux auf einem BeagleBone unter ROS mit Anwendung durch ein Roboterfahrzeug.*
 
 Im Sensorsystemeprojekt erhält jede Studentengruppe ein mit einem BeagleBone-Platinencomputer ausgestattetes Roboterfahrzeug. Dieses Fahrzeug soll autonom einen Raum absuchen, Kollisionen vermeiden, Hindernissen ausweichen und einen vorgegebenen Gegenstand auf dem Boden identifizieren. Dazu muss das Fahrzeug mit einer Leistungselektronik für die Antriebe und mit geeigneten Sensoren ausgestattet werden.  
 Da für die Messung des Wandabstands nur ein einzelner Ultraschallsensor verwendet werden darf, muss dessen Signal mit einem Kalman-Filter aufbereitet werden.   
