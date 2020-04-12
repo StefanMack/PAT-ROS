@@ -1,13 +1,15 @@
 #!/bin/bash
 # Skript zum Herstellen einer SSH-Verbindung mit dem BB via WiFi
 # Skript muss von Linux PC aus ausgeführt werden. IP-Adresse der
-# WiFi-Verbindung ist je nach Router unterschiedlich!
-# Der Variablen wifi_ip unten korrekte IP-Adresse zuweisen. 
+# WiFi-Verbindung ist je nach Router unterschiedlich! Alternativ
+# kann auch der Hostname verwendet werden, wenn dieser im WLAN-
+# Netz einmalig ist.
+# Der Variablen wifi_ip unten korrekte IP-Adresse oder Hostnamen zuweisen. 
 # Beim ASCII-Bild müssen bestimmte Zeichen mit \ "escaped" werden.
-# S. Mack, 25.12.19
+# S. Mack, 10.4.20
 
 
-wifi_ip=192.168.178.77 
+wifi_ip=beaglebone.local 
 echo ............................................................
 echo Verbindung wird über WiFi-Adresse $wifi_ip hergestellt
 echo ............................................................
@@ -23,5 +25,5 @@ echo -e "\
 =(  _____| (_________|"
 
 echo
-ssh 192.168.178.71 -l beagle -p 22
+ssh $wifi_ip -l beagle -p 22
 
