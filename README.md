@@ -26,7 +26,7 @@ Insgesamt funktioniert die Projektarbeit nun wesentlich besser und die Studieren
 
 Wegen der vorrübergehenden Schließung der Hochschulen infolge der Corona-Pandemie wurde eine "to-go Version" des Roboters entwickelt. Damit können die Studierenden die Projektarbeit auch Zuhause durchführen.
 
-![Neuer RoboToGo für die Projektarbeit Zuhause](/RoboToGovHintenLinks_klein)
+![Neuer RoboToGo für die Projektarbeit Zuhause](/RoboToGo)
 
 Prof. Dr. S. Mack, 12. April 2020.
 
