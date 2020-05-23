@@ -9,7 +9,7 @@ Die Softwareentwicklung sowohl auf dem BeagleBone aus auch auf dem PC geschieht 
 ![Kommunikationsstruktur](/BB_ROS_Comm) 
  
 **Das Roboterfahrzeug als mechatronisches System besitzt die Komponenten Sensordatenerfassung, Motorsteuerung und Kalman-Filter / Regelung. Jeder dieser Komponenten ist ein ROS-Knoten also ein Prozess zugeordnet.
-Dabei werden die Knoten Sensordatenerfassung und Motorsteuerung auf dem BeageBone ausgeführt. Der Knoten Kalman-Filter / Regelung wird mit Simulink auf dem PC erstellt und dort auch ausgeführt. Der BeagleBone und der PC befinden sich im selben WLAN und bilden ein ROS-Netzwerk.  
+Dabei werden die Knoten Sensordatenerfassung und Motorsteuerung auf dem BeagleBone ausgeführt. Der Knoten Kalman-Filter / Regelung wird mit Simulink auf dem PC erstellt und dort auch ausgeführt. Der BeagleBone und der PC befinden sich im selben WLAN und bilden ein ROS-Netzwerk.  
 Wie in der Grafik dargestellt liefert der Sensorknoten beispielsweise Abstandsmesswerte (Topic A) an den
 Filter-/Regelungsknoten. Dieser wiederum liefert Solldrehzahlen der Räder (Topic B) an die Motorsteuerung, damit das Roboterfahrzeug im konstanten Abstand entlang der Wand fährt.**
 
@@ -20,7 +20,7 @@ Weiter sind hier als Beispiele Quellcodedateien für C-, Python-, und Simulink-P
   
 Das verwendete SRP-Image (Stand 14.2.20) für den BeagleBone finden sie [hier als Download](https://www.magentacloud.de/lnk/zKiMtt0m).
 
-Bisher wurde diese Projektarbeit ohne ROS mit modellbasierter Softwareerzeugung und Crosscompilern komplett unter Simulink durchgeführt. Leider hatte uns Mathworks hier etwas im Stich gelassen, da das Support Package für den BeagleBone nicht für neuere Debianversionen als 7.9 aktualisiert wurde. Im Zuge der Umstellung der Labor-PCs auf Ubuntu-Linux konnte das Support Package für den BeagleBone dann gar nicht mehr verwendet werden, da es seltsamerweise nur für Windows verfügbar ist.  
+Bisher wurde diese Projektarbeit ohne ROS mit modellbasierter Softwareerzeugung und Crosscompiliern komplett unter Simulink durchgeführt. Leider hatte uns Mathworks hier etwas im Stich gelassen, da das Support Package für den BeagleBone nicht für neuere Debianversionen als 7.9 aktualisiert wurde. Im Zuge der Umstellung der Labor-PCs auf Ubuntu-Linux konnte das Support Package für den BeagleBone dann gar nicht mehr verwendet werden, da es seltsamerweise nur für Windows verfügbar ist.  
 Die Not macht erfinderisch: Das Projekt wurde auf Ubuntu 18.04 und ROS Melodic umgestellt. Simulink wird nun nur noch dazu verwendet, einen ROS-Knoten für die Regelung und den Kalman-Filter zu erstellen.  
 Insgesamt funktioniert die Projektarbeit nun wesentlich besser und die Studierenden sind zufriedener!
 
