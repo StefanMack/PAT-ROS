@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<launch>
+  <node name="mein_srf02_talker" pkg="srp_init" type="srf02_talker.py" />
+  <node name="mein_gpio_listener" pkg="srp_init" type="gpio_listener.py" />
+</launch>
