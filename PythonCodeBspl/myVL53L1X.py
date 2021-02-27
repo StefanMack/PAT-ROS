@@ -3,7 +3,7 @@
 # Grundgeruest stammt aus VL53L1X library for Arduino von Pololu
 # github.com/pololu/vl53l1x-arduino fuer Arduino.
 # Modul VL53L1XRegAddr.py mit den Registeradressen muss im selben Verzeichnis sein.
-# S. Mack, 4.11.20
+# S. Mack, 24.2.21
 
 import smbus
 import sys
@@ -38,7 +38,7 @@ fast_osc_frequency = 0x0000;
 osc_calibrate_val = 0x0000;
 
 distance_mode = ('Short', 'Medium', 'Long', 'Unknown')
-distance_mode_select = 2 # Long als Default
+distance_mode_select = 1 # Medium als Default
 
 results = {'range_status':0,'stream_count':0,'dss_actual_effective_spads_sd0':0,\
 'ambient_count_rate_mcps_sd0':0,'sigma_sd0':0,'final_crosstalk_corrected_range_mm_sd0':0,\
@@ -120,18 +120,16 @@ def setMeasurementTimingBudget(budget_us):
     if (budget_us <= TIMING_GUARD): return False
     range_config_timeout_us = (budget_us - TIMING_GUARD)
     if (range_config_timeout_us > 1100000): return False # FDA_MAX_TIMING_BUDGET_US * 2
-    range_config_timeout_us = range_config_timeout_us/2
+    range_config_timeout_us = int(range_config_timeout_us/2)
     macro_period_us = calcMacroPeriod(readReg(RANGE_CONFIG__VCSEL_PERIOD_A))
     phasecal_timeout_mclks = timeoutMicrosecondsToMclks(1000, macro_period_us)
     if (phasecal_timeout_mclks > 0xFF): phasecal_timeout_mclks = 0xFF
     writeReg(PHASECAL_CONFIG__TIMEOUT_MACROP, phasecal_timeout_mclks)
     writeReg16Bit(MM_CONFIG__TIMEOUT_MACROP_A, encodeTimeout(timeoutMicrosecondsToMclks(1, macro_period_us)))
-    writeReg16Bit(RANGE_CONFIG__TIMEOUT_MACROP_A, encodeTimeout(timeoutMicrosecondsToMclks\
-    (range_config_timeout_us, macro_period_us)));
+    writeReg16Bit(RANGE_CONFIG__TIMEOUT_MACROP_A, encodeTimeout(timeoutMicrosecondsToMclks(range_config_timeout_us, macro_period_us)));
     macro_period_us = calcMacroPeriod(readReg(RANGE_CONFIG__VCSEL_PERIOD_B))
     writeReg16Bit(MM_CONFIG__TIMEOUT_MACROP_B, encodeTimeout(timeoutMicrosecondsToMclks(1, macro_period_us)))
-    writeReg16Bit(RANGE_CONFIG__TIMEOUT_MACROP_B, encodeTimeout(timeoutMicrosecondsToMclks\
-    (range_config_timeout_us, macro_period_us)))
+    writeReg16Bit(RANGE_CONFIG__TIMEOUT_MACROP_B, encodeTimeout(timeoutMicrosecondsToMclks(range_config_timeout_us, macro_period_us)))
     return True;
 
 # Get the measurement timing budget in microseconds, based on VL53L1_SetMeasurementTimingBudgetMicroSeconds()
@@ -292,7 +290,7 @@ def readResults():
     results['range_status'] = readReg(RESULT__RANGE_STATUS)
     results['stream_count'] = readReg(RESULT__STREAM_COUNT)
     results['dss_actual_effective_spads_sd0'] = readReg16bit(RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0)
-    results['ambient_count_rate_mcps_sd0'] = readReg16bit(RESULT__DSS_ACTUAL_EFFECTIVE_SPADS_SD0)
+    results['ambient_count_rate_mcps_sd0'] = readReg16bit(RESULT__AMBIENT_COUNT_RATE_MCPS_SD0)
     results['final_crosstalk_corrected_range_mm_sd0'] = readReg16bit(RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0)
     results['peak_signal_count_rate_crosstalk_corrected_mcps_sd0'] = readReg16bit(RESULT__PEAK_SIGNAL_COUNT_RATE_CROSSTALK_CORRECTED_MCPS_SD0)
     results['sigma_sd0'] = readReg16bit(RESULT__SIGMA_SD0)
@@ -354,7 +352,7 @@ def timeoutMclksToMicroseconds(timeout_mclks, macro_period_us):
 # macro period in microseconds (12.12 format) based on VL53L1_calc_timeout_mclks()
 def timeoutMicrosecondsToMclks(timeout_us, macro_period_us):
     if DEBUG_PRINT: print('timeoutMicrosecondsToMclks()')
-    return ((timeout_us << 12) + (macro_period_us >> 1)) / macro_period_us
+    return int(((timeout_us << 12) + (macro_period_us >> 1)) / macro_period_us)
 
 
 # Calculate macro period in microseconds (12.12 format) with given VCSEL period
@@ -364,7 +362,7 @@ def calcMacroPeriod(vcsel_period):
     global fast_osc_frequency
     pll_period_us = (0x01 << 30) / fast_osc_frequency
     vcsel_period_pclks = (vcsel_period + 1) << 1
-    macro_period_us = 2304 * pll_period_us
+    macro_period_us = int(2304 * pll_period_us)
     macro_period_us >>= 6
     macro_period_us *= vcsel_period_pclks
     macro_period_us >>= 6
@@ -389,8 +387,8 @@ try:
     # the minimum timing budget is 20 ms for short distance mode and 33 ms for
     # medium and long distance modes. See the VL53L1X datasheet for more
     # information on range and timing limits.
-    setDistanceMode(1)
-    setMeasurementTimingBudget(50000)
+    setDistanceMode(1) # 0=short, 1=medium, 2=long
+    setMeasurementTimingBudget(50000) #µs
     # Start continuous readings at a rate of one measurement every 50 ms (the
     # inter-measurement period). This period should be at least as long as the
     # timing budget.
@@ -399,8 +397,8 @@ try:
     while(1):
         # Abstandswert auslesen
         sensorRead(True)
-        print(str(ranging_data['range_mm']) + '    ' + str(ranging_data['sigma_mm']) + '    ' + str(ranging_data['range_status'])\
-         + '    ' + str(ranging_data['peak_signal_count_rate_MCPS']) + '    ' + str(ranging_data['ambient_count_rate_MCPS']))
+        print('r={:6.1f} mm  r_s={:5.1f} mm   r_st={:2.0f}   PSigCnt={:5.1f}   AmbCnt={:4.1f}'.\
+        format(ranging_data['range_mm'],ranging_data['sigma_mm'],ranging_data['range_status'],ranging_data['peak_signal_count_rate_MCPS'],ranging_data['ambient_count_rate_MCPS']))        
         sleep(0.5)
 except KeyboardInterrupt:
     print(' ')

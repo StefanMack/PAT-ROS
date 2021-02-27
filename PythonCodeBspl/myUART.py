@@ -6,8 +6,8 @@
 # 0...1 mit gesendet. Da der Arduino nur ein ASCII-Zeichen als
 # Startsignal für den Messvorgang liest, gehen keine zweistelligen
 # Zahlen.
-#
-# S. Mack, 5.3.20
+# P9_21 ist TX, P9_22 ist RX am BB
+# S. Mack, 19.2.21
 
 from subprocess import call
 import serial
@@ -16,9 +16,9 @@ from time import sleep
 
 print("Python-Interpreter: {}\n".format(sys.version))
 # Pinkonfiguration UART setzen
-command = "config-pin -a p9.21  uart"
+command = "config-pin p9.21  uart"
 call(command, shell= True) # execute command in Bash Shell
-command = "config-pin -a p9.22  uart"
+command = "config-pin p9.22  uart"
 call(command, shell= True)
 
 

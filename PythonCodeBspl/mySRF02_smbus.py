@@ -17,7 +17,7 @@ print('====================================')
 
 try:
     while True:
-	# 0x51 Messwert in cm, 0x52 Messwert in µs
+        # 0x51 Messwert in cm, 0x52 Messwert in µs
         i2c.write_byte_data(0x70, 0, 0x52)
         time.sleep(0.2)
         # 2 Byte lesen ab Adresse 0x02
