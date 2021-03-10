@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 ## Einfacher talker, der den Ultraschallwandler SRF02 ausliest und
 ## dessen Messwerte als UInt16  unter dem topic 'range_val' veröffentlicht
-## S. Mack, 3.6.20
+## S. Mack, 10.3.21
 
 import rospy
 import time
@@ -21,7 +21,7 @@ def talker():
     print('i2c-bus opened...')
     while not rospy.is_shutdown():
         i2c.write_byte_data(0x70, 0, 0x51)
-        time.sleep(0.05)
+        time.sleep(0.08) # Min. 0.08 sonst I/O-Fehler da Echowert noch nicht da
         # 2 Byte lesen ab Adresse 0x02
         range_val = i2c.read_word_data(0x70, 0x02)
         # Messwert Big Endian > MSB und LSB tauschen
