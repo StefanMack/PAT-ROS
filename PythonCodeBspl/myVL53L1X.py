@@ -229,7 +229,6 @@ def dataReady():
 # Start continuous ranging measurements, with the given inter-measurement
 # period in milliseconds determining how often the sensor takes a measurement.
 def startContinuous(period_ms):
-    print('startContinuous()')
     writeReg32Bit(SYSTEM__INTERMEASUREMENT_PERIOD, period_ms * osc_calibrate_val)
     writeReg(SYSTEM__INTERRUPT_CLEAR, 0x01) # sys_interrupt_clear_range
     writeReg(SYSTEM__MODE_START, 0x40) # mode_range__timed
