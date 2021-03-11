@@ -18,10 +18,10 @@ Filter-/Regelungsknoten. Dieser wiederum liefert Solldrehzahlen der Räder (Topi
 In diesem Repository finden Sie die Projektanleitung als PDF-Datei. Darin werden die BeagleBone-Hardware sowie die Schnittstellen zu den Peripheriemodulen (Sensoren und Aktoren) eingehend behandelt. Auch finden sich dort Anleitungen zur Softwareerstellung mit C, Python und Simulink sowie Basisinformationen zum Umgang mit Embedded Linux.
 Weiter sind hier als Beispiele Quellcodedateien für C-, Python-, und Simulink-Programme sowie für ein ROS-Package zu finden.
   
-Das verwendete Image (Stand 2.10.20) für den BeagleBone finden sie [hier als Download](https://www.magentacloud.de/lnk/qegBlQTs).
+Das verwendete Image (Stand 11.3.21) für den BeagleBone finden sie [hier als Download](https://www.magentacloud.de/lnk/4UABlWWB).
 
 Bisher wurde diese Projektarbeit ohne ROS mit modellbasierter Softwareerzeugung und Cross-Compiler komplett unter Simulink durchgeführt. Leider hatte uns Mathworks hier etwas im Stich gelassen, da das Support Package für den BeagleBone nicht für neuere Debianversionen als 7.9 aktualisiert wurde. Im Zuge der Umstellung der Labor-PCs auf Ubuntu-Linux konnte das Support Package für den BeagleBone dann gar nicht mehr verwendet werden, da es seltsamerweise nur für Windows verfügbar ist.  
-Die Not macht erfinderisch: Das Projekt wurde auf Ubuntu 18.04 und ROS Melodic umgestellt. Simulink wird nun nur noch dazu verwendet, einen ROS-Knoten für die Regelung und den Kalman-Filter zu erstellen.  
+Die Not macht erfinderisch: Das Projekt wurde auf Ubuntu 20.04 und ROS Noetic umgestellt. Simulink wird nun nur noch dazu verwendet, einen ROS-Knoten für die Regelung und den Kalman-Filter zu erstellen.  
 Insgesamt funktioniert die Projektarbeit nun wesentlich besser und die Studierenden sind zufriedener!
 
 Aufgrund der Corona-bedingten Schließung der Hochschulen im Sommersemester 2020 wurde eine "to-go Version" des Roboters entwickelt. Damit konnten die Studierenden die Projektarbeit auch Zuhause unter Online-Betreuung durchführen.
