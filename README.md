@@ -4,7 +4,7 @@
 
 Im Projekt Automatisierungstechnik erhält jede Studentengruppe ein mit einem BeagleBone-Platinencomputer ausgestattetes Roboterfahrzeug. Dieses Fahrzeug soll autonom einen Raum entlang der Wand absuchen, Kollisionen vermeiden, Hindernissen ausweichen und einen vorgegebenen Gegenstand auf dem Boden identifizieren. Dazu muss das Fahrzeug mit einer Leistungselektronik für die Antriebe und mit geeigneten Sensoren ausgestattet werden.  
 Da für die Messung des Wandabstands nur ein einzelner Ultraschallsensor verwendet werden darf, muss dessen Signal mit einem Kalman-Filter aufbereitet werden.   
-Die Softwareentwicklung sowohl auf dem BeagleBone aus auch auf dem PC geschieht unter Linux (Ubuntu 18.04 LTS) inklusive der Middleware ROS (Robot Operation System Melodic).
+Die Softwareentwicklung sowohl auf dem BeagleBone aus auch auf dem PC geschieht unter Linux (Ubuntu 20.04 LTS) inklusive der Middleware ROS (Robot Operation System Noetic).
    
 ![Kommunikationsstruktur](/BB_ROS_Comm) 
  
@@ -29,7 +29,7 @@ Dieser RoboToGo wird aktuell nun auch im Präsenzunterricht verwendet.
 
 ![Neuer RoboToGo für die Projektarbeit Zuhause](/RoboToGo)
 
-Prof. Dr. S. Mack, 2. Oktober 2020.
+Prof. Dr. S. Mack, 11. März 2021.
 
 License
 -----
