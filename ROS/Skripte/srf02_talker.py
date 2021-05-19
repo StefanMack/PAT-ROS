@@ -1,8 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-## Einfacher talker, der den Ultraschallwandler SRF02 ausliest und
-## dessen Messwerte als UInt16  unter dem topic 'range_val' veröffentlicht
-## S. Mack, 10.3.21
+# Einfacher talker, der den Ultraschallwandler SRF02 ausliest und
+# dessen Messwerte als UInt16  unter dem topic 'range_val' veröffentlicht
+# Grove Cape V2 mit 5 V VCC verwenden!
+# Auf dem RasPi funktioniert i2c.write_byte_data() nicht zuverlässig.
+# Hier zweimal je ein Byte lesen:
+#        wert_a = i2c.read_byte_data(0x70, 0x02)
+#        wert_b = i2c.read_byte_data(0x70, 0x03)
+#        # Messwert Big Endian > MSB und LSB tauschen
+#        wert = ((wert_a << 8) & 0xFF00) + (wert_b)
+# S. Mack, 27.5.21
 
 import rospy
 import time
