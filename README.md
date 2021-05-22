@@ -20,7 +20,7 @@ Weiter sind hier als Beispiele Quellcodedateien für C-, Python-, und Simulink-P
   
 Das verwendete Image (Stand 11.3.21) für den BeagleBone finden sie [hier als Download](https://www.magentacloud.de/lnk/4UABlWWB).  
 
-Die Bewegung des Roboterfahrzeugs und der Abstandssensor können zudem in einem Simulink-Modell simuliert werden. Dazu wird für das Roboterfahrzeug ein einfaches "Bicycle"-Fahrzeugmodell (Fahrradmodell mit lenkbarer Vorderachse) verwendet. Hiermit können sowohl der Kalman-Filter als auch die Regelung numerisch optimiert werden. Folgender Screenprint zeigt das Simulink-Modell einer Simulation der mit einem Abstandssensor geregelten Fahrt entlang einer Wand.  
+Die Bewegung des Roboterfahrzeugs und die Messeigenschaften des Abstandssensors werden mit einem Simulink-Modell simuliert. Dazu wird für das Roboterfahrzeug ein einfaches "Bicycle"-Fahrzeugmodell (Fahrradmodell mit lenkbarer Vorderachse) verwendet. Hiermit werden sowohl der Kalman-Filter als auch die Regelung numerisch optimiert. Folgender Screenprint zeigt das Modell und Ergebnis einer Simulation der mit einem einzelnen Abstandssensor + Kalman-Filter geregelten Fahrt entlang einer Wand.  
 
 ![Simulinkmodell Robotersimulation](/simulation)
 
@@ -33,7 +33,7 @@ Dieser RoboToGo wird aktuell nun auch im Präsenzunterricht verwendet.
 
 ![Neuer RoboToGo für die Projektarbeit Zuhause](/RoboToGo)
 
-Prof. Dr. S. Mack, 11. März 2021.
+Prof. Dr. S. Mack, 22. Mai 2021.
 
 License
 -----
