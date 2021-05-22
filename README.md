@@ -18,7 +18,11 @@ Filter-/Regelungsknoten. Dieser wiederum liefert Solldrehzahlen der Räder (Topi
 In diesem Repository finden Sie die Projektanleitung als PDF-Datei. Darin werden die BeagleBone-Hardware sowie die Schnittstellen zu den Peripheriemodulen (Sensoren und Aktoren) eingehend behandelt. Auch finden sich dort Anleitungen zur Softwareerstellung mit C, Python und Simulink sowie Basisinformationen zum Umgang mit Embedded Linux.
 Weiter sind hier als Beispiele Quellcodedateien für C-, Python-, und Simulink-Programme sowie für ein ROS-Package zu finden.
   
-Das verwendete Image (Stand 11.3.21) für den BeagleBone finden sie [hier als Download](https://www.magentacloud.de/lnk/4UABlWWB).
+Das verwendete Image (Stand 11.3.21) für den BeagleBone finden sie [hier als Download](https://www.magentacloud.de/lnk/4UABlWWB).  
+
+Die Bewegung des Roboterfahrzeugs und der Abstandssensor können zudem in einem Simulink-Modell simuliert werden. Dazu wird für das Roboterfahrzeug ein einfaches "Bicycle"-Fahrzeugmodell (Fahrradmodell mit lenkbarer Vorderachse) verwendet. Hiermit können sowohl der Kalman-Filter als auch die Regelung numerisch optimiert werden. Folgender Screenprint zeigt das Simulink-Modell einer Simulation der mit einem Abstandssensor geregelten Fahrt entlang einer Wand.  
+
+![Simulinkmodell Robotersimulation](/simulation)
 
 Bisher wurde diese Projektarbeit ohne ROS mit modellbasierter Softwareerzeugung und Cross-Compiler komplett unter Simulink durchgeführt. Leider hatte uns Mathworks hier etwas im Stich gelassen, da das Support Package für den BeagleBone nicht für neuere Debianversionen als 7.9 aktualisiert wurde. Im Zuge der Umstellung der Labor-PCs auf Ubuntu-Linux konnte das Support Package für den BeagleBone dann gar nicht mehr verwendet werden, da es seltsamerweise nur für Windows verfügbar ist.  
 Die Not macht erfinderisch: Das Projekt wurde auf Ubuntu 20.04 und ROS Noetic umgestellt. Simulink wird nun nur noch dazu verwendet, einen ROS-Knoten für die Regelung und den Kalman-Filter zu erstellen.  
