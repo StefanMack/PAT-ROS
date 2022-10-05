@@ -18,7 +18,7 @@ Filter-/Regelungsknoten. Dieser wiederum liefert Solldrehzahlen der Räder (Topi
 In diesem Repository finden Sie die Projektanleitung als PDF-Datei. Darin werden die BeagleBone-Hardware sowie die Schnittstellen zu den Peripheriemodulen (Sensoren und Aktoren) eingehend behandelt. Auch finden sich dort Anleitungen zur Softwareerstellung mit C, Python und Simulink sowie Basisinformationen zum Umgang mit Embedded Linux.
 Weiter sind hier als Beispiele Quellcodedateien für C-, Python-, und Simulink-Programme sowie für ein ROS-Package zu finden.
   
-Das verwendete Image (Stand 11.3.21) für den BeagleBone finden sie [hier als Download](https://www.magentacloud.de/lnk/4UABlWWB).  
+Das verwendete Image (Stand 20.9.22) für den BeagleBone finden sie [hier als Download](https://magentacloud.de/s/kgJycr2XaNxwGKL).  
 
 Die Bewegung des Roboterfahrzeugs und die Messeigenschaften des Abstandssensors werden mit einem Simulink-Modell simuliert. Dazu wird für das Roboterfahrzeug ein einfaches "Bicycle"-Fahrzeugmodell (Fahrradmodell mit lenkbarer Vorderachse) verwendet. Hiermit werden sowohl der Kalman-Filter als auch die Regelung numerisch optimiert. Folgender Screenprint zeigt das Modell und Ergebnis einer Simulation der mit einem einzelnen Abstandssensor + Kalman-Filter geregelten Fahrt entlang einer Wand.  
 
