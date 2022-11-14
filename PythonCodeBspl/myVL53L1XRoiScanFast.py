@@ -9,8 +9,8 @@
 # Vom Sensor wird nur die Reichweite abgefragt, damit höhere Messrate.
 # Modul VL53L1XRegAddr.py mit den Registeradressen sowie Modul tofSens.py
 # müssen im selben Verzeichnis sein.
-# Objektorientierte Variante des Skripts
-# S. Mack, 12.11.22
+# Objektorientierte Variante des Skripts, Ausgabe Werte als Floats.
+# S. Mack, 14.11.22
 
 
 import smbus
@@ -48,18 +48,18 @@ try:
     # information on range and timing limits.
     my_tof.setDistanceMode(0) # 0=short, 1=medium, 2=long
     my_tof.setMeasurementTimingBudget(20000) # µs nicht! ms eingeben!
-    # Groesse des ROI festlegen
-    my_tof.setROISize(4,4)
-    print('Range (mm)')
+    # Groesse des ROI festlegen, x=horizontal Laengsrichtung Sensorchip
+    my_tof.setROISize(4,16) # x min 4, y (Hoehe) min 4 max 16
     while(1):
-        scan_data = []
+        ranges = []
         # 13 Scanwinkel 0...12 = range(13), 4 Scanwinkel 0,4,8,12 = range(0,13,4)
         for angle in range(0,13,4):
             roi_center = 8*angle + 151;
             my_tof.setROICenter(roi_center) # ROI setzen
             my_tof.sensorReadSingle(blocking=True) # Abstandswert auslesen (blocking und nur Reichweite)       
-            scan_data.append('{:6.1f}'.format(my_tof.ranging_data['range_mm']))
-        print(scan_data)
+            ranges.append(round(my_tof.ranging_data['range_mm'],0))
+        print('Range (mm): ',end='')
+        print(*ranges, sep=', ')
 except KeyboardInterrupt:
     print(' ')
     i2c.close()
